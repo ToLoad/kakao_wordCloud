@@ -17,6 +17,9 @@ def cleaning_text(text):
     text = re.sub(pattern = '\\d\\d\\d\\d[년]+ \\d[월]+ \\d\\d[일]+ \\w\\w\\w', repl = '', string = text)
     text = re.sub(pattern = '\\d\\d\\d\\d[년]+ \\d\\d[월]+ \\d[일]+ \\w\\w\\w', repl = '', string = text)
     text = re.sub(pattern = '\\d\\d\\d\\d[년]+ \\d\\d[월]+ \\d\\d[일]+ \\w\\w\\w', repl = '', string = text)
+    text = re.sub(pattern = '[사진]+ \\d+[장]', repl = '', string = text)
+    text = re.sub(pattern = '[사진]+ \\d\\d+[장]', repl = '', string = text)
+    text = re.sub(pattern = '[샵검색]+\\:', repl = '', string = text)
     text = re.sub(pattern = '\\n', repl = '', string = text)
     text = text.strip(string.punctuation) # 모든 구두점 삭제
     
@@ -37,6 +40,8 @@ def get_name(text):
 def get_text(text):
     number = text.find(':')
     textT = text[number + 2:]
+    textT = textT.lstrip()
+    textT = textT.rstrip()
 
     return(textT)
 
@@ -52,9 +57,10 @@ def split_text(input_id):
         text = get_text(result)
 
         if (id == input_id):
-            results.append(text)
-            global result_text
-            result_text = result_text + ' ' + text
+            if not (text == '동영상' or text == '이모티콘' or text == '사진'):
+                results.append(text)
+                global result_text
+                result_text = result_text + ' ' + text
     return result_text             
 
 # id = input("분석할 사람의 이름을 입력하세요: ")

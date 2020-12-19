@@ -33,5 +33,5 @@ def make_png(id):
     wc.to_file('wordcloud.png')
     print("finished..")
 
-# id = '준혁이'
+# id = '이하승불개'
 # get_freq_used_words(id)
