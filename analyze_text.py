@@ -1,7 +1,7 @@
 import re
 import string
 
-results = []
+# results = []
 result_text = ''
 
 def cleaning_text(text):
@@ -29,9 +29,6 @@ def cleaning_text(text):
     return(text)
 
 def get_name(text):
-    # text = text.split(' : ')
-    # id = text[0]
-
     number = text.find(':')
     id = text[ :number - 1]
 
@@ -46,23 +43,18 @@ def get_text(text):
     return(textT)
 
 
-def split_text(input_id):
-    f = open('123.txt', 'r', encoding='utf-8')
-
-    lines = f.readlines()
+def split_text(input_id, text_file):
+    lines = text_file.readlines()
 
     for line in lines:
+        line = line.decode('utf-8')
         result = cleaning_text(line)
         id = get_name(result)
         text = get_text(result)
 
         if (id == input_id):
             if not (text == '동영상' or text == '이모티콘' or text == '사진'):
-                results.append(text)
+                # results.append(text)
                 global result_text
                 result_text = result_text + ' ' + text
     return result_text             
-
-# id = input("분석할 사람의 이름을 입력하세요: ")
-# split_text(id)
-# print(results)

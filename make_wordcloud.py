@@ -4,8 +4,10 @@ from collections import Counter
 from analyze_text import split_text
 from wordcloud import WordCloud
 
-def get_freq_used_words(id):
-    results = split_text(id)
+# import matplotlib.pyplot as plt
+
+def get_freq_used_words(id, text_file):
+    results = split_text(id, text_file)
     hannanum = Hannanum()
     nouns = hannanum.nouns(results)
 
@@ -22,16 +24,20 @@ def get_freq_used_words(id):
     
     return nouns_list
 
-def make_png(id):
+def make_png(id, text_file):
     wc = WordCloud(font_path='font\\NanumGothic.ttf',
         background_color='white',
         width=1000,
         height=1000)
 
-    nouns_list = get_freq_used_words(id)
+    nouns_list = get_freq_used_words(id, text_file)
     wc.generate_from_frequencies(dict(nouns_list))
     wc.to_file('wordcloud.png')
+    # plt.figure(figsize = (15, 10))
+    # plt.axis("off")
+    # plt.imshow(wc)
+    # plt.show()
     print("finished..")
 
-# id = '이하승불개'
-# get_freq_used_words(id)
+# f = open('123.txt', 'r', encoding='utf-8')
+# make_png('준혁이', f)
