@@ -25,6 +25,7 @@ def get_freq_used_words(id, text_file):
 def make_png(id, text_file):
     wc = WordCloud(font_path='.font/NanumGothic.ttf',
         background_color='white',
+        max_font_size=500,
         width=1000,
         height=1000)
 
