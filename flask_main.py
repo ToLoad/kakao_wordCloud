@@ -27,8 +27,6 @@ def get_idlist():
 if __name__ == "__main__":
     app.run()
 
-#dd
-
 
 
 
