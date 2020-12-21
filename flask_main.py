@@ -24,7 +24,8 @@ def get_idlist():
         getIdList = get_id(f)
         return render_template("wordCloud.html", getID=getIdList)
 
-app.run()
+if __name__ == "__main__":
+    app.run()
 
 
 
