@@ -23,9 +23,9 @@ def get_freq_used_words(id, text_file):
     return nouns_list
 
 def make_png(id, text_file):
-    wc = WordCloud(font_path='font/NanumGothic.ttf',
+    wc = WordCloud(font_path='.font/NanumGothic.ttf',
         background_color='white',
-        max_font_size=100,
+        max_font_size=300,
         width=1000,
         height=1000)
 
