@@ -36,5 +36,5 @@ def make_png(id, text_file):
     buf = BytesIO()
     plt.savefig(buf, format='png')
     data = base64.b64encode(buf.getbuffer()).decode('ascii')
-
+    
     return f"<img src='data:image/png;base64,{data}'/>"
