@@ -7,7 +7,7 @@
   <body>
     <div name="make_wc">
       <h3>워드클라우드 만들기</h3>
-      <form action="http://localhost:8000/make_wc" method="POST" enctype="multipart/form-data">
+      <form action="https://kakao-wordcloud.herokuapp.com/make_wc" method="POST" enctype="multipart/form-data">
         <input type="file" name="file" accept=".txt" />
         <input type="search" placeholder="Type to id" required name="input_id"/>
         <input type="submit" />
@@ -15,7 +15,7 @@
     </div>
     <div name="get_idlist">
       <h3>닉네임 추출하기</h3>
-      <form action="http://localhost:8000/get_idlist" method="POST" enctype="multipart/form-data">
+      <form action="https://kakao-wordcloud.herokuapp.com/get_idlist" method="POST" enctype="multipart/form-data">
         <input type="file" name="file" accept=".txt" />
         <input type="submit" />
       </form>
