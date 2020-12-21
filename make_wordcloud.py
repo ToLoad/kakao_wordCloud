@@ -8,6 +8,12 @@ from io import BytesIO
 import base64
 import matplotlib.pyplot as plt
 
+from os import path
+from os import environ
+
+d = path.dirname(__file__)
+environ["FONT_PATH"] = 'font\\NanumGothic.ttf'
+
 def get_freq_used_words(id, text_file):
     results = split_text(id, text_file)
     hannanum = Hannanum()
