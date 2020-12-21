@@ -5,9 +5,18 @@
   </head>
 
   <body>
-    <div>
-      <form action="http://localhost:8000/file_uploaded" method="POST" enctype="multipart/form-data" accept-charset=utf-8>
-        <input type="file" name="file" />
+    <div name="make_wc">
+      <h3>워드클라우드 만들기</h3>
+      <form action="http://localhost:8000/make_wc" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".txt" />
+        <input type="search" placeholder="Type to id" required name="input_id"/>
+        <input type="submit" />
+      </form>
+    </div>
+    <div name="get_idlist">
+      <h3>닉네임 추출하기</h3>
+      <form action="http://localhost:8000/get_idlist" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".txt" />
         <input type="submit" />
       </form>
     </div>

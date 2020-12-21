@@ -1,4 +1,5 @@
 from make_wordcloud import make_png
+from analyze_text import get_id
 from flask import Flask, render_template, request, redirect
 import pandas as pd
 import sys
@@ -9,13 +10,19 @@ app = Flask("Kakao Chat Analyze")
 def home():
     return render_template("mainPage.html")
 
-@app.route('/file_uploaded', methods = ['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST': # POST 방식으로 전달된 경우
+@app.route('/make_wc', methods = ['GET', 'POST'])
+def make_wc():
+    if request.method == 'POST':
         f = request.files['file']
-        make_png('준혁이', f)
-        return render_template("wordCloud.html")
-        # return "successed"
+        id = request.form['input_id']
+        return make_png(id, f)
+
+@app.route('/get_idlist', methods = ['GET', 'POST'])
+def get_idlist():
+    if request.method == 'POST':
+        f = request.files['file']
+        getIdList = get_id(f)
+        return render_template("wordCloud.html", getID=getIdList)
 
 app.run(port='8000', debug=True)
 
