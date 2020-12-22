@@ -34,7 +34,7 @@ def get_name_pc(text):
         return(id)
 
 def get_text_phone(text):
-    number = text.find(':')
+    number = text.find(',')
     number2 = text.find(':', number)
     if not (number == -1):
         textT = text[number2 + 2:]
