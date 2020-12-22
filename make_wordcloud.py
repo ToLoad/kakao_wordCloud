@@ -8,8 +8,8 @@ from io import BytesIO
 import base64
 import matplotlib.pyplot as plt
 
-def get_freq_used_words(id, text_file):
-    results = split_text(id, text_file)
+def get_freq_used_words(id, text_file, mode):
+    results = split_text(id, text_file, mode)
     hannanum = Hannanum()
     nouns = hannanum.nouns(results)
 
@@ -22,13 +22,13 @@ def get_freq_used_words(id, text_file):
 
     return nouns_list
 
-def make_png(id, text_file):
+def make_png(id, text_file, mode):
     wc = WordCloud(font_path='./font/NanumGothic.ttf',
         background_color='white',
         width=1000,
         height=1000)
 
-    nouns_list = get_freq_used_words(id, text_file)
+    nouns_list = get_freq_used_words(id, text_file, mode)
     wc.generate_from_frequencies(dict(nouns_list))
     plt.figure(figsize = (15, 10))
     plt.axis("off")

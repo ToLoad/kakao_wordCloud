@@ -15,13 +15,15 @@ def make_wc():
     if request.method == 'POST':
         f = request.files['file']
         id = request.form['input_id']
-        return make_png(id, f)
+        mode = request.form['contact']
+        return make_png(id, f, mode)
 
 @app.route('/get_idlist', methods = ['GET', 'POST'])
 def get_idlist():
     if request.method == 'POST':
         f = request.files['file']
-        getIdList = get_id(f)
+        mode = request.form['contact']
+        getIdList = get_id(f, mode)
         return render_template("wordCloud.html", getID=getIdList)
 
 if __name__ == "__main__":

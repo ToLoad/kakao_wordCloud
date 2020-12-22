@@ -4,18 +4,6 @@ import string
 result_text = ''
 
 def cleaning_text(text):
-    text = re.sub(pattern = '\\d\\d\\d\\d\\. \\d\\. \\d\\.', repl = '', string = text)
-    text = re.sub(pattern = '\\d\\d\\d\\d\\. \\d\\. \\d\\d\\.', repl = '', string = text)
-    text = re.sub(pattern = '\\d\\d\\d\\d\\. \\d\\d\\. \\d\\.', repl = '', string = text)
-    text = re.sub(pattern = '\\d\\d\\d\\d\\. \\d\\d\\. \\d\\d\\.', repl = '', string = text)
-    text = re.sub(pattern = '[오전|오후]+ \\d\\:\\d\\d\\,', repl = '', string = text)
-    text = re.sub(pattern = '[오전|오후]+ \\d\\:\\d\\,', repl = '', string = text)
-    text = re.sub(pattern = '[오전|오후]+ \\d\\d\\:\\d\\d\\,', repl = '', string = text)
-    text = re.sub(pattern = '[오전|오후]+ \\d\\d\\:\\d\\,', repl = '', string = text)
-    text = re.sub(pattern = '\\d\\d\\d\\d[년]+ \\d[월]+ \\d[일]+ \\w\\w\\w', repl = '', string = text)
-    text = re.sub(pattern = '\\d\\d\\d\\d[년]+ \\d[월]+ \\d\\d[일]+ \\w\\w\\w', repl = '', string = text)
-    text = re.sub(pattern = '\\d\\d\\d\\d[년]+ \\d\\d[월]+ \\d[일]+ \\w\\w\\w', repl = '', string = text)
-    text = re.sub(pattern = '\\d\\d\\d\\d[년]+ \\d\\d[월]+ \\d\\d[일]+ \\w\\w\\w', repl = '', string = text)
     text = re.sub(pattern = '[사진]+ \\d+[장]', repl = '', string = text)
     text = re.sub(pattern = '[사진]+ \\d\\d+[장]', repl = '', string = text)
     text = re.sub(pattern = '[샵검색]+\\:', repl = '', string = text)
@@ -25,40 +13,66 @@ def cleaning_text(text):
 
     return(text)
 
-def get_name(text):
+def get_name_phone(text):
+    number1 = text.find(',')
+    number2 = text.find(':', number1)
+    if not (number1 == -1 or number2 == -1):
+        id = text[number1 + 1 : number2]
+        id = id.lstrip()
+        id = id.rstrip()
+
+        return(id)
+
+def get_name_pc(text):
+    number1 = text.find('[')
+    number2 = text.find(']')
+    if not (number1 == -1 or number2 == -1):
+        id = text[: number2]
+        id = id.lstrip()
+        id = id.rstrip()
+
+        return(id)
+
+def get_text_phone(text):
     number = text.find(':')
-    id = text[ :number - 1]
-    id = id.lstrip()
-    id = id.rstrip()
+    if not (number == -1):
+        textT = text[number + 2:]
+        textT = textT.lstrip()
+        textT = textT.rstrip()
 
-    return(id)
+        return(textT)
 
-def get_text(text):
-    number = text.find(':')
-    textT = text[number + 2:]
-    textT = textT.lstrip()
-    textT = textT.rstrip()
+def get_text_pc(text):
+    number1 = text.find(']')
+    number2 = text.find(']', number1 + 1)
+    if not (number1 == -1 or number2 == -1):
+        textT = text[number2 + 2:]
+        textT = textT.lstrip()
+        textT = textT.rstrip()
 
-    return(textT)
+        return(textT)
 
 
-def split_text(input_id, text_file):
+def split_text(input_id, text_file, mode):
     lines = text_file.readlines()
 
     for idx, line in enumerate(lines):
         line = line.decode('utf-8')
         if (idx > 6):
             result = cleaning_text(line)
-            id = get_name(result)
-            text = get_text(result)
-
-            if (id == input_id):
-                if not (text == '동영상' or text == '이모티콘' or text == '사진'):
-                    global result_text
-                    result_text = result_text + ' ' + text
+            if (mode == 'phone'):
+                id = get_name_phone(result)
+                text = get_text_phone(result)
+            else:
+                id = get_name_pc(result)
+                text = get_text_pc(result)
+                if (id == input_id):
+                    if not (text == '동영상' or text == '이모티콘' or text == '사진' or text == None or text == ''):
+                        global result_text
+                        result_text = result_text + ' ' + text
     return result_text
 
-def get_id(text_file):
+def get_id(text_file, mode):
     lines = text_file.readlines()
     id_array = [None for i in range(len(lines))]
     results = []
@@ -67,7 +81,10 @@ def get_id(text_file):
         line = line.decode('utf-8')
         if (idx > 6):
             result = cleaning_text(line)
-            id = get_name(result)
+            if (mode == 'phone'):
+                id = get_name_phone(result)
+            else:
+                id = get_name_pc(result)
             id_array[idx] = id
 
     id_set = set(id_array)

@@ -5,18 +5,30 @@
   </head>
 
   <body>
-    <div name="make_wc">
+    <div name="make_wc" style="border:1px solid; padding:10px;">
       <h3>워드클라우드 만들기</h3>
       <form action="https://kakao-wordcloud.herokuapp.com/make_wc" method="POST" enctype="multipart/form-data">
         <input type="file" name="file" accept=".txt" />
+        <h4>카카오톡 닉네임</h4>
         <input type="search" placeholder="Type to id" required name="input_id"/>
+        <h4>기종 선택</h4>
+        <input type="radio" id="c_phone" name="contact" value="phone">
+        <label for="c_phone">스마트폰(Android, IOS)</label>
+        <input type="radio" id="c_pc" name="contact" value="pc">
+        <label for="c_phone">PC 버전</label>
         <input type="submit" />
       </form>
     </div>
-    <div name="get_idlist">
+    <br />
+    <div name="get_idlist" style="border:1px solid; padding:10px;">
       <h3>닉네임 추출하기</h3>
       <form action="https://kakao-wordcloud.herokuapp.com/get_idlist" method="POST" enctype="multipart/form-data">
         <input type="file" name="file" accept=".txt" />
+        <h4>기종 선택</h4>
+        <input type="radio" id="c_phone" name="contact" value="phone">
+        <label for="c_phone">스마트폰(Android, IOS)</label>
+        <input type="radio" id="c_pc" name="contact" value="pc">
+        <label for="c_phone">PC 버전</label>
         <input type="submit" />
       </form>
     </div>
