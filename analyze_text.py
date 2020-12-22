@@ -35,8 +35,9 @@ def get_name_pc(text):
 
 def get_text_phone(text):
     number = text.find(':')
+    number2 = text.find(':', number)
     if not (number == -1):
-        textT = text[number + 2:]
+        textT = text[number2 + 2:]
         textT = textT.lstrip()
         textT = textT.rstrip()
 
