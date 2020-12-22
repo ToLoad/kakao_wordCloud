@@ -66,10 +66,10 @@ def split_text(input_id, text_file, mode):
             else:
                 id = get_name_pc(result)
                 text = get_text_pc(result)
-                if (id == input_id):
-                    if not (text == '동영상' or text == '이모티콘' or text == '사진' or text == None or text == ''):
-                        global result_text
-                        result_text = result_text + ' ' + text
+            if (id == input_id):
+                if not (text == '동영상' or text == '이모티콘' or text == '사진' or text == None or text == ''):
+                    global result_text
+                    result_text = result_text + ' ' + text
     return result_text
 
 def get_id(text_file, mode):
