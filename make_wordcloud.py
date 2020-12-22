@@ -31,7 +31,7 @@ def make_png(id, text_file, mode):
 
     nouns_list = get_freq_used_words(id, text_file, mode)
     wc.generate_from_frequencies(dict(nouns_list))
-    plt.figure(figsize = (15, 10))
+    # plt.figure(figsize = (10, 10))
     plt.axis("off")
     plt.imshow(wc)
     buf = BytesIO()
