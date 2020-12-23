@@ -6,6 +6,7 @@ import sys
 
 app = Flask("Kakao Chat Analyze")
 
+
 @app.route("/")
 def home():
     return render_template("mainPage.html")
@@ -16,7 +17,9 @@ def make_wc():
         f = request.files['file']
         id = request.form['input_id']
         mode = request.form['contact']
-        return make_png(id, f, mode)
+        (data, nouns_list) = make_png(id, f, mode)
+
+        return render_template("wordCloud.html", image_data = data, input_id = id, nonus_list = nouns_list)
 
 @app.route('/get_idlist', methods = ['GET', 'POST'])
 def get_idlist():
@@ -24,11 +27,10 @@ def get_idlist():
         f = request.files['file']
         mode = request.form['contact']
         getIdList = get_id(f, mode)
-        return render_template("wordCloud.html", getID=getIdList)
+        return render_template("extractedNames.html", getID=getIdList)
 
 if __name__ == "__main__":
-    app.run()
-
+    app.run(port='8000', debug=True)
 
 
 

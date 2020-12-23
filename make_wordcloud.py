@@ -18,24 +18,27 @@ def get_freq_used_words(id, text_file, mode):
             nouns.pop(i)
 
     count = Counter(nouns)
-    nouns_list = count.most_common(100)
+    nouns_list = count.most_common(200)
 
     return nouns_list
 
 def make_png(id, text_file, mode):
     wc = WordCloud(font_path='./font/NanumGothic.ttf',
         background_color='white',
-        max_words=100,
-        width=500,
-        height=500)
+        width=1000,
+        height=1000)
 
     nouns_list = get_freq_used_words(id, text_file, mode)
     wc.generate_from_frequencies(dict(nouns_list))
-    # plt.figure(figsize = (10, 10))
+    plt.switch_backend('agg')
+    plt.figure(figsize=(10, 10))
     plt.axis("off")
     plt.imshow(wc)
     buf = BytesIO()
     plt.savefig(buf, format='png')
     data = base64.b64encode(buf.getbuffer()).decode('ascii')
+    buf.truncate(0)
+    buf.seek(0)
     
-    return f"<img src='data:image/png;base64,{data}'/>"
+    # return f"<img src='data:image/png;base64,{data}'/>"
+    return (data, nouns_list)

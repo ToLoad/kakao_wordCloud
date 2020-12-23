@@ -1,8 +1,6 @@
 import re
 import string
 
-result_text = ''
-
 def cleaning_text(text):
     text = re.sub(pattern = '[사진]+ \\d+[장]', repl = '', string = text)
     text = re.sub(pattern = '[사진]+ \\d\\d+[장]', repl = '', string = text)
@@ -55,6 +53,8 @@ def get_text_pc(text):
 
 
 def split_text(input_id, text_file, mode):
+    global result_text
+    result_text = ''
     lines = text_file.readlines()
 
     for idx, line in enumerate(lines):
@@ -69,7 +69,6 @@ def split_text(input_id, text_file, mode):
                 text = get_text_pc(result)
             if (id == input_id):
                 if not (text == '동영상' or text == '이모티콘' or text == '사진' or text == None or text == ''):
-                    global result_text
                     result_text = result_text + ' ' + text
     return result_text
 

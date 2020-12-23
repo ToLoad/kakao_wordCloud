@@ -5,11 +5,15 @@
   </head>
 
   <body>
-    <section>
-      <h4>파일에서 추출 된 사용자 닉네임</h4>
-      {% for result in getID %}
-        <li>{{result}}</li>
+    <div name="image" style = "text-align: center;">
+      <h4>"{{ input_id }}" 의 워드 클라우드</h4>
+      <img src='data:image/png;base64,{{ image_data }}'/>
+    </div>
+    <div name="list" style = "text-align: center;">
+        <h4>빈도수 확인(최대 200개)</h4>
+        {% for result in nonus_list %}
+        <li><strong>"{{ result[0] }}"</strong> {{result[1]}}회 사용</li>
       {% endfor %}
-    <section>
+    </div>
   </body>
 </html>
