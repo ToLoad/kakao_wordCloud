@@ -10,7 +10,7 @@
       <img src='data:image/png;base64,{{ image_data }}'/>
     </div>
     <div name="list" style = "text-align: center;">
-        <h4>빈도수 확인(최대 200개)</h4>
+        <h4>빈도수 확인 (최대 200개)</h4>
         {% for result in nonus_list %}
         <li><strong>"{{ result[0] }}"</strong> {{result[1]}}회 사용</li>
       {% endfor %}
