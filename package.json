@@ -1,0 +1,20 @@
+{
+  "name": "kakao_wordCloud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ToLoad/kakao_wordCloud.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ToLoad/kakao_wordCloud/issues"
+  },
+  "homepage": "https://github.com/ToLoad/kakao_wordCloud#readme"
+}
