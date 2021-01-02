@@ -2,35 +2,360 @@
 <html>
   <head>
     <title>Kakao Chat Analyze</title>
+    <link
+      href="{{ url_for('static', filename='css/tailwind.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
   </head>
 
   <body>
-    <div name="make_wc" style="border:1px solid; padding:10px;">
-      <h3>워드클라우드 만들기</h3>
-      <form action="https://toload-wordcloud.herokuapp.com/make_wc" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".txt" />
-        <h4>카카오톡 닉네임</h4>
-        <input type="search" placeholder="Type to id" required name="input_id"/>
-        <h4>기종 선택</h4>
-        <input type="radio" id="c_phone" name="contact" value="phone">
-        <label for="c_phone">스마트폰(Android, IOS)</label>
-        <input type="radio" id="c_pc" name="contact" value="pc">
-        <label for="c_phone">PC 버전</label>
-        <input type="submit" />
+    <nav class="flex items-center bg-gray-300 p-3 flex-wrap">
+      <span class="text-xl text-black font-bold uppercase tracking-wide ml-10">
+        WordCloud
+      </span>
+      <button
+        class="ml-auto mr-10 text-black inline-flex p-e hover:bg-gray-500 rounded items-center justify-center-sm lg:hidden nav-toggler"
+        data-target="#navigation"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="black"
+          width="30px"
+          height="30px"
+        >
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+        </svg>
+      </button>
+      <div
+        class="hidden top-nav w-full lg:inline-flex lg:flex-grow lg:w-auto"
+        id="navigation"
+      >
+        <div
+          class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start flex flex-col lg:h-auto ml-10 mt-2"
+        >
+          <a
+            href="#"
+            class="lg:inline-flex lg:w-auto px-3 py-2 rounded items-center justify-center text-black hover:bg-white"
+          >
+            <span>DevGitHub</span>
+          </a>
+          <a
+            href="#"
+            class="lg:inline-flex lg:w-auto px-3 py-2 rounded items-center justify-center text-black hover:bg-white"
+          >
+            <span>Example</span>
+          </a>
+          <a
+            href="#"
+            class="lg:inline-flex lg:w-auto px-3 py-2 rounded items-center justify-center text-black hover:bg-white"
+          >
+            <span>Test</span>
+          </a>
+          <a
+            href="#"
+            class="lg:inline-flex lg:w-auto px-3 py-2 rounded items-center justify-center text-black hover:bg-white"
+          >
+            <span>Someting</span>
+          </a>
+          <a
+            href="#"
+            class="lg:inline-flex lg:w-auto px-3 py-2 rounded items-center justify-center text-black hover:bg-white"
+          >
+            <span>DoIt</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="main-wrapper">
+      <form
+        action="http://localhost:8000/make_wc"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="upload-main-wrapper">
+          <div class="upload-wrapper">
+            <input type="file" id="upload-file" accept="text/plain" required />
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="224.3881704980842 176.8527621722847 221.13266283524905 178.8472378277154"
+              width="221.13"
+              height="178.85"
+            >
+              <defs>
+                <path
+                  d="M357.38 176.85C386.18 176.85 409.53 204.24 409.53 238.02C409.53 239.29 409.5 240.56 409.42 241.81C430.23 246.95 445.52 264.16 445.52 284.59C445.52 284.59 445.52 284.59 445.52 284.59C445.52 309.08 423.56 328.94 396.47 328.94C384.17 328.94 285.74 328.94 273.44 328.94C246.35 328.94 224.39 309.08 224.39 284.59C224.39 284.59 224.39 284.59 224.39 284.59C224.39 263.24 241.08 245.41 263.31 241.2C265.3 218.05 281.96 199.98 302.22 199.98C306.67 199.98 310.94 200.85 314.93 202.46C324.4 186.96 339.88 176.85 357.38 176.85Z"
+                  id="b1aO7LLtdW"
+                ></path>
+                <path
+                  d="M306.46 297.6L339.79 297.6L373.13 297.6L339.79 255.94L306.46 297.6Z"
+                  id="c4SXvvMdYD"
+                ></path>
+                <path
+                  d="M350.79 293.05L328.79 293.05L328.79 355.7L350.79 355.7L350.79 293.05Z"
+                  id="b11si2zUk"
+                ></path>
+              </defs>
+              <g>
+                <g>
+                  <g>
+                    <use
+                      xlink:href="#b1aO7LLtdW"
+                      opacity="1"
+                      fill="#ffffff"
+                      fill-opacity="1"
+                    ></use>
+                  </g>
+                  <g>
+                    <g>
+                      <use
+                        xlink:href="#c4SXvvMdYD"
+                        opacity="1"
+                        fill="#363535"
+                        fill-opacity="1"
+                      ></use>
+                    </g>
+                    <g>
+                      <use
+                        xlink:href="#b11si2zUk"
+                        opacity="1"
+                        fill="#363535"
+                        fill-opacity="1"
+                      ></use>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+            <span class="file-upload-text">Upload File</span>
+            <div class="file-success-text">
+              <svg
+                version="1.1"
+                id="check"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 100 100"
+                xml:space="preserve"
+              >
+                <circle
+                  style="
+                    fill: rgba(0, 0, 0, 0);
+                    stroke: #ffffff;
+                    stroke-width: 10;
+                    stroke-miterlimit: 10;
+                  "
+                  cx="49.799"
+                  cy="49.746"
+                  r="44.757"
+                />
+                <polyline
+                  style="
+                    fill: rgba(0, 0, 0, 0);
+                    stroke: #ffffff;
+                    stroke-width: 10;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 10;
+                  "
+                  points="
+                              27.114,51 41.402,65.288 72.485,34.205 "
+                />
+              </svg>
+              <span>Successfully</span>
+            </div>
+          </div>
+          <p id="file-upload-name"></p>
+          <input
+            type="search"
+            placeholder="카카오톡 닉네임을 입력하세요"
+            required
+            name="input_id"
+            class="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-2"
+          />
+          <input type="radio" id="c_phone" name="contact" value="phone" required />
+          <label for="c_phone">스마트폰(Android, IOS)</label>
+          <br />
+          <input type="radio" id="c_pc" name="contact" value="pc" required />
+          <label for="c_phone">PC 버전 카카오톡</label>
+          <br />
+          <button
+            type="submit"
+            class="block bg-gray-300 hover:bg-gray-500 text-black font-bold text-lg mx-auto p-1 rounded"
+          >
+            워드클라우드 만들기
+          </button>
+        </div>
       </form>
     </div>
     <br />
-    <div name="get_idlist" style="border:1px solid; padding:10px;">
-      <h3>닉네임 추출하기</h3>
-      <form action="https://toload-wordcloud.herokuapp.com/get_idlist" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".txt" />
-        <h4>기종 선택</h4>
-        <input type="radio" id="c_phone" name="contact" value="phone">
-        <label for="c_phone">스마트폰(Android, IOS)</label>
-        <input type="radio" id="c_pc" name="contact" value="pc">
-        <label for="c_phone">PC 버전</label>
-        <input type="submit" />
+    <button
+      class="idlist-toggle block bg-gray-300 hover:bg-gray-500 text-black font-bold text-lg mx-auto p-1 rounded"
+      data-target="#idlist"
+    >
+      정확한 닉네임을 모르세요?
+    </button>
+    <div
+      name="get_idlist"
+      id="idlist"
+      class="hidden"
+    >
+    <div class="main-wrapper">
+      <form
+        action="http://localhost:8000/get_idlist"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="upload-main-wrapper">
+          <div class="upload-wrapper">
+            <input type="file" id="upload-file" accept="text/plain" required />
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="224.3881704980842 176.8527621722847 221.13266283524905 178.8472378277154"
+              width="221.13"
+              height="178.85"
+            >
+              <defs>
+                <path
+                  d="M357.38 176.85C386.18 176.85 409.53 204.24 409.53 238.02C409.53 239.29 409.5 240.56 409.42 241.81C430.23 246.95 445.52 264.16 445.52 284.59C445.52 284.59 445.52 284.59 445.52 284.59C445.52 309.08 423.56 328.94 396.47 328.94C384.17 328.94 285.74 328.94 273.44 328.94C246.35 328.94 224.39 309.08 224.39 284.59C224.39 284.59 224.39 284.59 224.39 284.59C224.39 263.24 241.08 245.41 263.31 241.2C265.3 218.05 281.96 199.98 302.22 199.98C306.67 199.98 310.94 200.85 314.93 202.46C324.4 186.96 339.88 176.85 357.38 176.85Z"
+                  id="b1aO7LLtdW"
+                ></path>
+                <path
+                  d="M306.46 297.6L339.79 297.6L373.13 297.6L339.79 255.94L306.46 297.6Z"
+                  id="c4SXvvMdYD"
+                ></path>
+                <path
+                  d="M350.79 293.05L328.79 293.05L328.79 355.7L350.79 355.7L350.79 293.05Z"
+                  id="b11si2zUk"
+                ></path>
+              </defs>
+              <g>
+                <g>
+                  <g>
+                    <use
+                      xlink:href="#b1aO7LLtdW"
+                      opacity="1"
+                      fill="#ffffff"
+                      fill-opacity="1"
+                    ></use>
+                  </g>
+                  <g>
+                    <g>
+                      <use
+                        xlink:href="#c4SXvvMdYD"
+                        opacity="1"
+                        fill="#363535"
+                        fill-opacity="1"
+                      ></use>
+                    </g>
+                    <g>
+                      <use
+                        xlink:href="#b11si2zUk"
+                        opacity="1"
+                        fill="#363535"
+                        fill-opacity="1"
+                      ></use>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+            <span class="file-upload-text">Upload File</span>
+            <div class="file-success-text">
+              <svg
+                version="1.1"
+                id="check"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 100 100"
+                xml:space="preserve"
+              >
+                <circle
+                  style="
+                    fill: rgba(0, 0, 0, 0);
+                    stroke: #ffffff;
+                    stroke-width: 10;
+                    stroke-miterlimit: 10;
+                  "
+                  cx="49.799"
+                  cy="49.746"
+                  r="44.757"
+                />
+                <polyline
+                  style="
+                    fill: rgba(0, 0, 0, 0);
+                    stroke: #ffffff;
+                    stroke-width: 10;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 10;
+                  "
+                  points="
+                              27.114,51 41.402,65.288 72.485,34.205 "
+                />
+              </svg>
+              <span>Successfully</span>
+            </div>
+          </div>
+          <p id="file-upload-name"></p>
+          <input type="radio" id="c_phone" name="contact" value="phone" required />
+          <label for="c_phone">스마트폰(Android, IOS)</label>
+          <br />
+          <input type="radio" id="c_pc" name="contact" value="pc" required />
+          <label for="c_phone">PC 버전 카카오톡</label>
+          <br />
+          <button
+            type="submit"
+            class="block bg-gray-300 hover:bg-gray-500 text-black font-bold text-lg mx-auto p-1 rounded"
+          >
+            닉네임 추출하기
+          </button>
+        </div>
       </form>
     </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+      $(document).ready(function () {
+        $("#upload-file").change(function () {
+          var filename = $(this).val();
+          $("#file-upload-name").html(filename);
+          if (filename != "") {
+            setTimeout(function () {
+              $(".upload-wrapper").addClass("uploaded");
+            }, 600);
+            setTimeout(function () {
+              $(".upload-wrapper").removeClass("uploaded");
+              $(".upload-wrapper").addClass("success");
+            }, 1600);
+          }
+        });
+      });
+    </script>
+    <script>
+      $(".idlist-toggle").each(function (_, idToggler) {
+        var target2 = $(idToggler).data("target");
+        $(idToggler).on("click", function () {
+          $(target2).animate({
+            opacity: "toggle",
+          });
+        });
+      });
+    </script>
   </body>
 </html>
