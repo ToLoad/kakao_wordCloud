@@ -10,6 +10,10 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/main.css') }}"
     />
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/sub.css') }}"
+    />
   </head>
 
   <body>
@@ -80,7 +84,7 @@
       >
         <div class="upload-main-wrapper">
           <div class="upload-wrapper">
-            <input type="file" id="upload-file" accept="text/plain" required />
+            <input type="file" id="upload-file" name="upload-file" accept="text/plain" required />
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
@@ -209,15 +213,15 @@
       id="idlist"
       class="hidden"
     >
-    <div class="main-wrapper">
+    <div class="main-wrapper2">
       <form
         action="http://localhost:8000/get_idlist"
         method="POST"
         enctype="multipart/form-data"
       >
-        <div class="upload-main-wrapper">
-          <div class="upload-wrapper">
-            <input type="file" id="upload-file" accept="text/plain" required />
+        <div class="upload-main-wrapper2">
+          <div class="upload-wrapper2">
+            <input type="file" id="upload-file2" name="upload-file2" accept="text/plain" required />
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
@@ -272,8 +276,8 @@
                 </g>
               </g>
             </svg>
-            <span class="file-upload-text">Upload File</span>
-            <div class="file-success-text">
+            <span class="file-upload-text2">Upload File</span>
+            <div class="file-success-text2">
               <svg
                 version="1.1"
                 id="check"
@@ -311,7 +315,7 @@
               <span>Successfully</span>
             </div>
           </div>
-          <p id="file-upload-name"></p>
+          <p id="file-upload-name2"></p>
           <input type="radio" id="c_phone" name="contact" value="phone" required />
           <label for="c_phone">스마트폰(Android, IOS)</label>
           <br />
@@ -347,6 +351,23 @@
         });
       });
     </script>
+        <script>
+          $(document).ready(function () {
+            $("#upload-file2").change(function () {
+              var filename = $(this).val();
+              $("#file-upload-name2").html(filename);
+              if (filename != "") {
+                setTimeout(function () {
+                  $(".upload-wrapper2").addClass("uploaded");
+                }, 600);
+                setTimeout(function () {
+                  $(".upload-wrapper2").removeClass("uploaded");
+                  $(".upload-wrapper2").addClass("success");
+                }, 1600);
+              }
+            });
+          });
+        </script>
     <script>
       $(".idlist-toggle").each(function (_, idToggler) {
         var target2 = $(idToggler).data("target");

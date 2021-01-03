@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+.main-wrapper2 {
+  max-width: 1170px;
+  margin: 0 auto;
+  text-align: center;
+}
+.upload-main-wrapper2 {
+  width: 220px;
+  margin: 0 auto;
+}
+#file-upload-name2 {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+}
+.upload-wrapper2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 40px auto 0;
+  position: relative;
+  cursor: pointer;
+  background-color: #bcaef5;
+  padding: 8px 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.2s linear all;
+  color: #ffffff;
+}
+.upload-wrapper2 input[type="file"] {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+.upload-wrapper2 > svg {
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+}
+.upload-wrapper2.success > svg {
+  transform: translateX(-200px);
+}
+.upload-wrapper2.uploaded {
+  transition: 0.2s linear all;
+  width: 60px;
+  border-radius: 50%;
+  height: 60px;
+  text-align: center;
+}
+.upload-wrapper2 .file-upload-text2 {
+  position: absolute;
+  left: 80px;
+  opacity: 1;
+  visibility: visible;
+  transition: 0.2s linear all;
+}
+.upload-wrapper2.uploaded .file-upload-text2 {
+  text-indent: -999px;
+  margin: 0;
+}
+.file-success-text2 {
+  opacity: 0;
+  transition: 0.2s linear all;
+  visibility: hidden;
+  transform: translateX(200px);
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.file-success-text2 svg {
+  width: 25px;
+  height: auto;
+}
+.file-success-text2 span {
+  margin-left: 15px;
+}
+.upload-wrapper2.success .file-success-text2 {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.upload-wrapper2.success.uploaded .file-success-text2 {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.upload-wrapper2.success.uploaded .file-success-text2 span {
+  display: none;
+}
+.upload-wrapper2 .file-success-text2 circle {
+  stroke-dasharray: 380;
+  stroke-dashoffset: 380;
+  transition: 1s linear all;
+  transition-delay: 1.4s;
+}
+.upload-wrapper2.success .file-success-text2 circle {
+  stroke-dashoffset: 0;
+}
+.upload-wrapper2 .file-success-text2 polyline {
+  stroke-dasharray: 380;
+  stroke-dashoffset: 380;
+  transition: 1s linear all;
+  transition-delay: 2s;
+}
+.upload-wrapper2.success .file-success-text2 polyline {
+  stroke-dashoffset: 0;
+}
+.upload-wrapper2.success .file-upload-text2 {
+  -webkit-animation-name: bounceOutLeft;
+  animation-name: bounceOutLeft;
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes bounceOutLeft {
+  20% {
+    opacity: 1;
+    -webkit-transform: translate3d(20px, 0, 0);
+    transform: translate3d(20px, 0, 0);
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(-2000px, 0, 0);
+    transform: translate3d(-2000px, 0, 0);
+  }
+}
+
+@keyframes bounceOutLeft {
+  20% {
+    opacity: 1;
+    -webkit-transform: translate3d(20px, 0, 0);
+    transform: translate3d(20px, 0, 0);
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(-2000px, 0, 0);
+    transform: translate3d(-2000px, 0, 0);
+  }
+}

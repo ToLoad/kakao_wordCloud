@@ -14,7 +14,7 @@ def home():
 @app.route('/make_wc', methods = ['GET', 'POST'])
 def make_wc():
     if request.method == 'POST':
-        f = request.files['file']
+        f = request.files['upload-file']
         id = request.form['input_id']
         mode = request.form['contact']
         (data, nouns_list) = make_png(id, f, mode)
@@ -24,7 +24,7 @@ def make_wc():
 @app.route('/get_idlist', methods = ['GET', 'POST'])
 def get_idlist():
     if request.method == 'POST':
-        f = request.files['file']
+        f = request.files['upload-file2']
         mode = request.form['contact']
         getIdList = get_id(f, mode)
         return render_template("extractedNames.html", getID=getIdList)
